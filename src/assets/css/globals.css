@@ -169,3 +169,36 @@ Accordion
 .accordion-button:hover::after {
 	background-image: var(--bg-accordion-hover) !important;
 }
+
+/* Tabs */
+
+.nav-item {
+	button {
+		border: none !important;
+		color: var(--gray-3) !important;
+		border-bottom: 2px solid transparent !important;
+		transition: all 0.3s ease-in-out !important;
+
+		h6 {
+			transition: all 0.3s ease-in-out !important;
+			color: var(--gray-3) !important;
+		}
+
+		&:hover,
+		&:focus,
+		&:active {
+			color: var(--dark) !important;
+			h6 {
+				color: var(--dark) !important;
+			}
+		}
+
+		&.active {
+			color: var(--dark) !important;
+			border-bottom: 2px solid var(--salmon) !important;
+			h6 {
+				color: var(--dark) !important;
+			}
+		}
+	}
+}
