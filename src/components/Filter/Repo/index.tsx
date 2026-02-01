@@ -2,7 +2,7 @@
 
 import { useFiltersStore } from "@/stores/filters"
 import { listLanguagesRepo, listTypeRepo } from "@/utils/variables"
-import { Check, ChevronDown, Search, X } from "lucide-react"
+import { ChevronDown, Search, X } from "lucide-react"
 import { useState } from "react"
 import { Button, Dropdown, Form, InputGroup, Offcanvas } from "react-bootstrap"
 import { FaCheck } from "react-icons/fa"
