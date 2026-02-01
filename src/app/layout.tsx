@@ -2,12 +2,16 @@
 
 import "@/assets/css/globals.css"
 import Header from "@/components/Layout/Header"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 
 export default function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode
 }>) {
+	const queryClient = new QueryClient()
+
 	return (
 		<html lang="pt-br">
 			<head>
@@ -30,9 +34,10 @@ export default function RootLayout({
 			</head>
 			<body className="h-full w-full">
 				<Header />
-				<section className="mx-auto flex w-full max-w-360 p-6!">
-					{children}
-				</section>
+				<QueryClientProvider client={queryClient}>
+					<section className="flex w-full p-6!">{children}</section>
+					<ReactQueryDevtools initialIsOpen={false} />
+				</QueryClientProvider>
 			</body>
 		</html>
 	)
