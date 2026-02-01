@@ -1,6 +1,7 @@
 "use client"
 
 import "@/assets/css/globals.css"
+import Header from "@/components/Layout/Header"
 
 export default function RootLayout({
 	children,
@@ -8,7 +9,7 @@ export default function RootLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<html lang="pt-br" data-lt-installed="true" data-scroll-behavior="smooth">
+		<html lang="pt-br">
 			<head>
 				<title>Megazord React GitHub API</title>
 				<link
@@ -28,6 +29,7 @@ export default function RootLayout({
 				<link rel="icon" href="/favicon.ico" />
 			</head>
 			<body className="h-full w-full">
+				<Header />
 				<section className="mx-auto flex w-full max-w-360 p-6!">
 					{children}
 				</section>
