@@ -4,4 +4,29 @@ export type TListGithubCard = {
 	avatar_url: string
 }
 
-export type TUserGithub = {}
+export type TUserGithub = {
+	id: number
+	avatar_url: string | null
+	bio: string | null
+	blog: string | null
+	company: string | null
+	email: string | null
+	location: string | null
+	login: string
+	name: string | null
+	html_url: string | null
+	twitter_username: string | null | undefined
+	public_repos: number
+}
+
+export type TRepoGithub = {
+	id: number
+	name: string
+  full_name: string
+	description: string | null
+	html_url: string
+	language: string | null
+	stargazers_count: number
+	forks_count: number
+  topics: string[]
+}
