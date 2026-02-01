@@ -9,14 +9,14 @@ type TCardUserProfileProps = {
 export default function CardUserProfile({ user }: TCardUserProfileProps) {
 	return (
 		<Link
-			href="/"
+			href={`/${user.login}`}
 			title="Visualizar perfil"
 			className="flex items-center gap-2 rounded-md! p-3 transition-all duration-300 focus-within:shadow-lg! hover:shadow-(--box-shadow)!"
 		>
 			<div className="flex h-[70px] w-[70px] items-center justify-center rounded-full! border border-(--gray-3) bg-transparent!">
 				{user.avatar_url ? (
 					<Image
-						className="h-full w-full object-contain!"
+						className="h-full w-full object-contain! rounded-full!"
 						src={user.avatar_url}
 						alt={user.login}
 						width={70}
