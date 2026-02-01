@@ -12,7 +12,8 @@
 	--gray-bg: #f8f8f8;
 	--primary: #0587ff;
 	--primary-dark: #0058a9;
-	--primary-linear-gradient: linear-gradient(to right, #0056a6, #0587ff);
+	--linear-from: #0056a6;
+	--linear-to: #0587ff;
 	--salmon: #fd8c73;
 	--box-shadow: 0 0 16px 0 rgba(79, 79, 80, 0.15);
 	--box-shadow-inner: inset 0 0 16px 0 rgba(0, 0, 0, 0.7);
@@ -199,6 +200,26 @@ Accordion
 			h6 {
 				color: var(--dark) !important;
 			}
+		}
+	}
+}
+
+/* Offcanvas */
+.offcanvas-header {
+	.offcanvas-title {
+		font-size: 24px !important;
+		font-weight: bold !important;
+	}
+	.btn-close {
+		transition: all 0.3s ease-in-out !important;
+		font-size: 24px !important;
+		font-weight: bold !important;
+		background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none' stroke='%23FE354D' stroke-linecap='round' stroke-linejoin='round'><path d='M2 2l12 12M14 2L2 14'/></svg>") !important;
+
+		&:hover,
+		&:focus,
+		&:active {
+			background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none' stroke='%23FE354D' stroke-linecap='round' stroke-linejoin='round'><path d='M2 2l12 12M14 2L2 14'/></svg>") !important;
 		}
 	}
 }
