@@ -6,13 +6,14 @@
 	--background: #ffffff;
 	--foreground: #24292e;
 	--dark: #000;
-	--gray_border: #f4f4f4;
-	--gray_3: #989898;
-	--gray_5: #dbdbdb;
-	--gray_bg: #f8f8f8;
+	--gray-border: #f4f4f4;
+	--gray-3: #989898;
+	--gray-5: #dbdbdb;
+	--gray-bg: #f8f8f8;
 	--primary: #0587ff;
 	--primary-linear-gradient: linear-gradient(to right, #0056a6, #0587ff);
 	--salmon: #fd8c73;
+	--box-shadow: 0 0 16px 0 rgba(79, 79, 80, 0.15);
 
 	/* Variáveis tamanho fontes */
 	--tam-h1: clamp(64px, 14.2496px + 8.75vw, 96px);
@@ -21,6 +22,7 @@
 	--tam-h4: clamp(28px, 21.7504px + 1.25vw, 34px);
 	--tam-h5: 24px;
 	--tam-h6: 20px;
+	--tam-18: 18px;
 	--tam-p: 16px;
 	--tam-small: 14px;
 	--tam-caption: 12px;
