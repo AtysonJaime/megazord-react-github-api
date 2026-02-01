@@ -131,3 +131,8 @@ span {
 	line-height: 150%;
 	color: var(--dark);
 }
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
