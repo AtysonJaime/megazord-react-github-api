@@ -3,7 +3,7 @@
 import { useFiltersStore } from "@/stores/filters"
 import { listLanguagesRepo, listTypeRepo } from "@/utils/variables"
 import { ChevronDown, Search, X } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button, Dropdown, Form, InputGroup, Offcanvas } from "react-bootstrap"
 import { FaCheck } from "react-icons/fa"
 
@@ -18,6 +18,7 @@ export default function FilterRepo() {
 	 */
 	const handlePressEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		if (e.key === "Enter") {
+			e.preventDefault()
 			handleSearch()
 		}
 	}
@@ -26,12 +27,13 @@ export default function FilterRepo() {
 	 * Função para buscar usuários passando o nome ou localização
 	 */
 	const handleSearch = () => {
-		const { repo, type, language } = filter_repo
-		setFilterRepo({
-			repo: repo === searchRepo ? repo : searchRepo,
-			type: type === searchRepo ? type : searchRepo,
-			language: language === searchRepo ? language : searchRepo,
-		})
+		const { repo } = filter_repo
+		if (repo !== searchRepo) {
+			setFilterRepo({
+				...filter_repo,
+				repo: searchRepo,
+			})
+		}
 	}
 
 	/**
@@ -41,11 +43,17 @@ export default function FilterRepo() {
 		clearSpecificFilterRepo("repo")
 		setSearchRepo("")
 	}
+
+	useEffect(() => {
+		setSearchRepo(filter_repo.repo || "")
+	}, [filter_repo.repo])
+
 	return (
 		<Form className="flex flex-col-reverse gap-2 lg:grid lg:grid-cols-[auto_270px]">
 			<Form.Group controlId="searchRepo">
 				<InputGroup>
 					<Button
+						type="button"
 						variant="outline-secondary"
 						title="Buscar usuário"
 						onClick={handleSearch}
@@ -96,6 +104,10 @@ function ListTypesRepo() {
 		setFilterRepo({ ...filter_repo, type })
 	}
 
+	useEffect(() => {
+		setTypeRepo(filter_repo.type || "all")
+	}, [filter_repo.type])
+
 	const contentList = () => {
 		return (
 			<ul className="m-0! flex flex-col gap-1 p-0!">
@@ -125,6 +137,7 @@ function ListTypesRepo() {
 	return (
 		<>
 			<Button
+				type="button"
 				onClick={() => setShowList(true)}
 				className="flex! items-center! gap-2! rounded-[42px]! border-none! bg-[linear-gradient(45deg,var(--linear-from)_0%,var(--linear-to)_100%)]! px-4! py-2! text-[18px]! text-white transition-all! duration-300 outline-none! after:content-none! hover:text-(--gray-5)! sm:hidden!"
 			>
@@ -166,6 +179,10 @@ function ListLanguageRepo() {
 		setLanguageRepo(language)
 		setFilterRepo({ ...filter_repo, language })
 	}
+
+	useEffect(() => {
+		setLanguageRepo(filter_repo.language || "all")
+	}, [filter_repo.language])
 
 	const contentList = () => {
 		return (

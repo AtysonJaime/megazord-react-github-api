@@ -19,6 +19,7 @@ export default function FilterUsers() {
 	 */
 	const handlePressEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		if (e.key === "Enter") {
+			e.preventDefault()
 			handleSearch()
 		}
 	}

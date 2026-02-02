@@ -6,18 +6,15 @@ import EmptyItem from "@/components/Layout/EmptyItem"
 import Loading from "@/components/Layout/Loading"
 import Paginacao from "@/components/Paginacao"
 import Tag from "@/components/Tag"
-import { TRepoGithub, TUserGithub } from "@/interfaces/user.interface"
+import { TRepoData, TRepoStarredData } from "@/interfaces/repository.interface"
+import { TUserGithub } from "@/interfaces/user.interface"
 import { fetchRepos, fetchStarred, fetchUser } from "@/server"
 import { useFiltersStore } from "@/stores/filters"
+import { filterListStarred } from "@/utils/functions"
 import { useQuery } from "@tanstack/react-query"
 import { BookMarked, Star, User } from "lucide-react"
 import { use, useEffect, useState } from "react"
 import { Tab, Tabs } from "react-bootstrap"
-
-type TRepoData = {
-	data: TRepoGithub[]
-	lastPage: number
-}
 
 export default function Page({
 	params,
@@ -64,42 +61,46 @@ export default function Page({
 	 * Query para buscar os repositórios favoritos do usuário
 	 */
 	const { data: starredData, status: starredStatus } = useQuery({
-		queryKey: ["starred", slug, filter_repo, currentPageStarred],
-		queryFn: () => fetchStarred(slug, filter_repo, currentPageStarred),
-		enabled: !!slug && tab === "starred",
+		queryKey: ["starred", slug, currentPageStarred],
+		queryFn: () => fetchStarred(slug, currentPageStarred),
+		enabled: !!slug,
 	})
 
 	// Separação dos dados para a listagem de repositórios e repositórios favoritos
-	const { lastPage: lastPageRepo, data: itensRepo }: TRepoData = reposData || {
-		lastPage: 0,
-		data: [],
-	}
-	const { lastPage: lastPageStarred, data: itensStarred }: TRepoData =
-		starredData || { lastPage: 0, data: [] }
+	const { items: itensRepo, total_count: totalCountRepo }: TRepoData =
+		reposData || {
+			items: [],
+			total_count: 0,
+		}
+	const { data: itensStarred, lastPage: totalCountStarred }: TRepoStarredData =
+		starredData || {
+			data: [],
+			lastPage: 0,
+		}
 
 	// Realiza validação para pegar o total de página de repositórios e não perder.
 	useEffect(() => {
-		if (lastPageRepo === 0) {
+		if (totalCountRepo === 0) {
 			if (hasFilter) return
 			setTotalPageRepo(0)
 			return
 		}
-		const newTotalPages = lastPageRepo
+		const newTotalPages = Math.ceil(totalCountRepo / 5)
 		if (newTotalPages <= totalPageRepo) return
 		setTotalPageRepo(newTotalPages)
-	}, [lastPageRepo])
+	}, [totalCountRepo])
 
 	// Realiza validação para pegar o total de página de repositórios favoritos e não perder.
 	useEffect(() => {
-		if (lastPageStarred === 0) {
+		if (totalCountStarred === 0) {
 			if (hasFilter) return
 			setTotalPageStarred(0)
 			return
 		}
-		const newTotalPages = lastPageStarred
+		const newTotalPages = totalCountStarred
 		if (newTotalPages <= totalPageStarred) return
 		setTotalPageStarred(newTotalPages)
-	}, [lastPageStarred])
+	}, [totalCountStarred])
 
 	if (userStatus === "pending") return <Loading />
 
@@ -111,6 +112,9 @@ export default function Page({
 				colorVariant="bg-red-300"
 			/>
 		)
+
+	let totalStarredItens =
+		totalCountStarred > 1 ? totalCountStarred * 100 : itensStarred.length
 
 	/**
 	 * Função para renderizar o conteúdo da aba de repositórios favoritos
@@ -125,13 +129,33 @@ export default function Page({
 					colorVariant="bg-red-300"
 				/>
 			)
+		const filteredStarred = filterListStarred(itensStarred, filter_repo)
+		totalStarredItens = filteredStarred.length
+		if (filteredStarred.length === 0) {
+			if (hasFilter) {
+				return (
+					<EmptyItem
+						feedback="Nenhum repositório favorito encontrado com os filtros aplicados"
+						icon={Star}
+						colorVariant="bg-red-300"
+					/>
+				)
+			}
+			return (
+				<EmptyItem
+					feedback="Nenhum repositório favorito encontrado"
+					icon={Star}
+					colorVariant="bg-red-300"
+				/>
+			)
+		}
 		return (
 			<ul className="m-0! flex max-h-[calc(100vh-380px)] flex-col gap-8 overflow-auto p-2!">
-				{itensStarred.map((repo, index) => (
+				{filteredStarred.map((repo, index) => (
 					<li key={repo.id} className="flex flex-col gap-8">
 						<CardInfoRepo isStarred={true} repo={repo} username={slug} />
 						{index < itensStarred.length - 1 && (
-							<hr className="flex! h-[2px]! w-full! bg-(--gray-border)! lg:hidden" />
+							<hr className="flex! h-[2px]! w-full! bg-(--gray-border)! lg:hidden!" />
 						)}
 					</li>
 				))}
@@ -152,13 +176,31 @@ export default function Page({
 					colorVariant="bg-red-300"
 				/>
 			)
+		if (itensRepo.length === 0) {
+			if (hasFilter) {
+				return (
+					<EmptyItem
+						feedback="Nenhum repositório encontrado com os filtros aplicados"
+						icon={BookMarked}
+						colorVariant="bg-red-300"
+					/>
+				)
+			}
+			return (
+				<EmptyItem
+					feedback="Nenhum repositório encontrado"
+					icon={BookMarked}
+					colorVariant="bg-red-300"
+				/>
+			)
+		}
 		return (
 			<ul className="m-0! flex max-h-[calc(100vh-380px)] flex-col gap-8 overflow-auto p-2!">
 				{itensRepo.map((repo, index) => (
 					<li key={repo.id} className="flex flex-col gap-8">
 						<CardInfoRepo isStarred={false} repo={repo} username={slug} />
 						{index < itensRepo.length - 1 && (
-							<hr className="flex! h-[2px]! w-full! bg-(--gray-border)! lg:hidden" />
+							<hr className="flex! h-[2px]! w-full! bg-(--gray-border)! lg:hidden!" />
 						)}
 					</li>
 				))}
@@ -174,21 +216,21 @@ export default function Page({
 					<Tab
 						eventKey="repositories"
 						onEntered={() => {
+							if (currentPageRepo !== 1) setCurrentPageRepo(1)
 							setTab("repositories")
-							setCurrentPageRepo(1)
 						}}
 						title={
 							<div className="flex items-center gap-2">
 								<BookMarked size={20} />
 								<h6 className="text-[16px] sm:text-[18px]">Repositories</h6>
-								<Tag topic={(totalPageRepo * 5).toString()} />
+								<Tag topic={userData.public_repos.toString()} />
 							</div>
 						}
 					>
 						<div className="flex flex-col gap-8">
 							<FilterRepo />
 							{contentTabRepositories()}
-							{totalPageRepo > 0 && (
+							{totalPageRepo > 1 && (
 								<Paginacao
 									pageAtual={currentPageRepo}
 									totalPages={totalPageRepo}
@@ -203,21 +245,21 @@ export default function Page({
 						className="border-none!"
 						eventKey="starred"
 						onEntered={() => {
+							if (currentPageStarred !== 1) setCurrentPageStarred(1)
 							setTab("starred")
-							setCurrentPageStarred(1)
 						}}
 						title={
 							<div className="flex items-center gap-2">
 								<Star size={20} />
 								<h6 className="text-[16px] sm:text-[18px]">Starred</h6>
-								<Tag topic={(totalPageStarred * 5).toString()} />
+								<Tag topic={totalStarredItens.toString()} />
 							</div>
 						}
 					>
 						<div className="flex flex-col gap-8">
 							<FilterRepo />
 							{contentTabStarred()}
-							{totalPageStarred > 0 && (
+							{totalPageStarred > 1 && (
 								<Paginacao
 									pageAtual={currentPageStarred}
 									totalPages={totalPageStarred}

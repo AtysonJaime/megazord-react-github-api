@@ -98,7 +98,7 @@ export default function Home() {
 				<FilterUsers />
 			</div>
 			{contentInfo()}
-			{totalPages > 0 && (
+			{totalPages > 1 && (
 				<div className="flex justify-center">
 					<Paginacao
 						pageAtual={currentPage}
