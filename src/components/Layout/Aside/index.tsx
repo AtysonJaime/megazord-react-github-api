@@ -68,50 +68,58 @@ function ListLinks({ user }: TListLinksProps) {
 		"flex items-center gap-2.5 text-(--primary)! hover:text-(--primary-dark)! hover:underline! focus:text-(--primary-dark)! focus:underline! active:text-(--primary-dark)! active:underline! transition-all duration-300!"
 	return (
 		<ul className="m-0! flex list-none! flex-col gap-4 p-0!">
-			<li>
-				<Link
-					href={user.html_url ? user.html_url : "#"}
-					className={linkClassName}
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<Building size={20} />
-					{user.company || ""}
-				</Link>
-			</li>
-			<li>
-				<Link
-					href={user.html_url ? user.html_url : "#"}
-					className={linkClassName}
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<MapPin size={20} />
-					{user.location || ""}
-				</Link>
-			</li>
-			<li>
-				<Link
-					href={user.blog || "#"}
-					className={linkClassName}
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<Link2 size={20} />
-					{user.blog || ""}
-				</Link>
-			</li>
-			<li>
-				<Link
-					href={"mailto:" + user.email || "#"}
-					className={linkClassName}
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<Mail size={20} />
-					{user.email || ""}
-				</Link>
-			</li>
+			{user.company && (
+				<li>
+					<Link
+						href={user.html_url ? user.html_url : "#"}
+						className={linkClassName}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<Building size={20} />
+						{user.company || ""}
+					</Link>
+				</li>
+			)}
+			{user.location && (
+				<li>
+					<Link
+						href={user.html_url ? user.html_url : "#"}
+						className={linkClassName}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<MapPin size={20} />
+						{user.location || ""}
+					</Link>
+				</li>
+			)}
+			{user.blog && (
+				<li>
+					<Link
+						href={user.blog || "#"}
+						className={linkClassName}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<Link2 size={20} />
+						{user.blog || ""}
+					</Link>
+				</li>
+			)}
+			{user.email && (
+				<li>
+					<Link
+						href={"mailto:" + user.email || "#"}
+						className={linkClassName}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<Mail size={20} />
+						{user.email || ""}
+					</Link>
+				</li>
+			)}
 			{user.twitter_username && (
 				<li>
 					<Link
