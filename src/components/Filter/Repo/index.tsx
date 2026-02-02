@@ -50,14 +50,14 @@ export default function FilterRepo() {
 
 	return (
 		<Form className="flex flex-col-reverse gap-2 lg:grid lg:grid-cols-[auto_270px]">
-			<Form.Group controlId="searchRepo" className="hidden! sm:flex!">
+			<Form.Group controlId="searchRepo">
 				<InputGroup>
 					<Button
 						type="button"
 						variant="outline-secondary"
 						title="Buscar usuário"
 						onClick={handleSearch}
-						className="rounded-none! border-t-0! border-r-0! border-l-0! border-(--gray-border)! hover:bg-(--gray-5)! focus:bg-(--gray-5)! active:bg-(--gray-5)!"
+						className="sm:flex!rounded-none! hidden! border-t-0! border-r-0! border-l-0! border-(--gray-border)! hover:bg-(--gray-5)! focus:bg-(--gray-5)! active:bg-(--gray-5)!"
 					>
 						<Search size={24} className="text-(--gray-3)!" />
 					</Button>
