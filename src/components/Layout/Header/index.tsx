@@ -4,9 +4,11 @@ import Image from "next/image"
 import LogoGithub from "@/assets/images/logo.svg"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
+import { useFiltersStore } from "@/stores/filters"
 
 export default function Header() {
 	const pathname = usePathname()
+	const { setFilterRepo } = useFiltersStore()
 	const splitPathname = pathname.split("/")
 	const userProfile = splitPathname.length > 2 ? "" : splitPathname.pop()
 	return (
@@ -16,6 +18,13 @@ export default function Header() {
 					href={"/"}
 					className="m-0! p-0!"
 					title="Voltar para a página inicial"
+					onClick={() => {
+						setFilterRepo({
+							language: "all",
+							type: "all",
+							repo: "",
+						})
+					}}
 				>
 					<Image src={LogoGithub} alt="Logo Github" width={100} height={100} />
 				</Link>
