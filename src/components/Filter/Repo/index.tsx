@@ -50,7 +50,7 @@ export default function FilterRepo() {
 
 	return (
 		<Form className="flex flex-col-reverse gap-2 lg:grid lg:grid-cols-[auto_270px]">
-			<Form.Group controlId="searchRepo">
+			<Form.Group controlId="searchRepo" className="hidden! sm:flex!">
 				<InputGroup>
 					<Button
 						type="button"
@@ -81,9 +81,12 @@ export default function FilterRepo() {
 					)}
 				</InputGroup>
 			</Form.Group>
-			<div className="flex flex-wrap gap-2">
-				<ListTypesRepo />
-				<ListLanguageRepo />
+			<div className="flex items-center justify-between gap-2 rounded-lg! bg-(--gray-bg)! px-2 py-3 sm:rounded-none! sm:bg-transparent! sm:p-0!">
+				<div className="flex flex-wrap gap-1">
+					<ListTypesRepo />
+					<ListLanguageRepo />
+				</div>
+				<Search size={24} className="text-(--primary)! sm:hidden!" />
 			</div>
 		</Form>
 	)
@@ -139,13 +142,13 @@ function ListTypesRepo() {
 			<Button
 				type="button"
 				onClick={() => setShowList(true)}
-				className="flex! items-center! gap-2! rounded-[42px]! border-none! bg-[linear-gradient(45deg,var(--linear-from)_0%,var(--linear-to)_100%)]! px-4! py-2! text-[18px]! text-white transition-all! duration-300 outline-none! after:content-none! hover:text-(--gray-5)! sm:hidden!"
+				className="flex! items-center! gap-2! rounded-[42px]! border-none! bg-[linear-gradient(45deg,var(--linear-from)_0%,var(--linear-to)_100%)]! px-4! py-2! text-[14px]! text-white transition-all! duration-300 outline-none! after:content-none! hover:text-(--gray-5)! sm:hidden! lg:text-[18px]!"
 			>
 				<ChevronDown size={24} />
 				Type
 			</Button>
 			<Dropdown>
-				<Dropdown.Toggle className="hidden! items-center! gap-2! rounded-[42px]! border-none! bg-[linear-gradient(45deg,var(--linear-from)_0%,var(--linear-to)_100%)]! px-4! py-2! text-[18px]! text-white transition-all! duration-300 outline-none! after:content-none! hover:text-(--gray-5)! sm:flex!">
+				<Dropdown.Toggle className="hidden! items-center! gap-2! rounded-[42px]! border-none! bg-[linear-gradient(45deg,var(--linear-from)_0%,var(--linear-to)_100%)]! px-4! py-2! text-[14px]! text-white transition-all! duration-300 outline-none! after:content-none! hover:text-(--gray-5)! sm:flex! lg:text-[18px]!">
 					<ChevronDown size={24} />
 					Type
 				</Dropdown.Toggle>
@@ -214,13 +217,13 @@ function ListLanguageRepo() {
 		<>
 			<Button
 				onClick={() => setShowList(true)}
-				className="flex! items-center! gap-2! rounded-[42px]! border-none! bg-[linear-gradient(45deg,var(--linear-from)_0%,var(--linear-to)_100%)]! px-4! py-2! text-[18px]! text-white transition-all! duration-300 outline-none! after:content-none! hover:text-(--gray-5)! sm:hidden!"
+				className="flex! items-center! gap-2! rounded-[42px]! border-none! bg-[linear-gradient(45deg,var(--linear-from)_0%,var(--linear-to)_100%)]! px-4! py-2! text-[14px]! text-white transition-all! duration-300 outline-none! after:content-none! hover:text-(--gray-5)! sm:hidden! lg:text-[18px]!"
 			>
 				<ChevronDown size={24} />
 				Language
 			</Button>
 			<Dropdown>
-				<Dropdown.Toggle className="hidden! items-center! gap-2! rounded-[42px]! border-none! bg-[linear-gradient(45deg,var(--linear-from)_0%,var(--linear-to)_100%)]! px-4! py-2! text-[18px]! text-white transition-all! duration-300 outline-none! after:content-none! hover:text-(--gray-5)! sm:flex!">
+				<Dropdown.Toggle className="hidden! items-center! gap-2! rounded-[42px]! border-none! bg-[linear-gradient(45deg,var(--linear-from)_0%,var(--linear-to)_100%)]! px-4! py-2! text-[14px]! text-white transition-all! duration-300 outline-none! after:content-none! hover:text-(--gray-5)! sm:flex! lg:text-[18px]!">
 					<ChevronDown size={24} />
 					Language
 				</Dropdown.Toggle>

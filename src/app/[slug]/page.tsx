@@ -155,7 +155,7 @@ export default function Page({
 					<li key={repo.id} className="flex flex-col gap-8">
 						<CardInfoRepo isStarred={true} repo={repo} username={slug} />
 						{index < itensStarred.length - 1 && (
-							<hr className="flex! h-[2px]! w-full! bg-(--gray-border)! lg:hidden!" />
+							<hr className="m-0! flex! h-[2px]! w-full! bg-(--gray-border)! lg:hidden!" />
 						)}
 					</li>
 				))}
@@ -200,7 +200,7 @@ export default function Page({
 					<li key={repo.id} className="flex flex-col gap-8">
 						<CardInfoRepo isStarred={false} repo={repo} username={slug} />
 						{index < itensRepo.length - 1 && (
-							<hr className="flex! h-[2px]! w-full! bg-(--gray-border)! lg:hidden!" />
+							<hr className="m-0! flex! h-[2px]! w-full! bg-(--gray-border)! lg:hidden!" />
 						)}
 					</li>
 				))}
