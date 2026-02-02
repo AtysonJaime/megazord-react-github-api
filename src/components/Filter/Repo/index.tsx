@@ -111,6 +111,9 @@ function ListTypesRepo() {
 		setTypeRepo(filter_repo.type || "all")
 	}, [filter_repo.type])
 
+	/**
+	 * Função para renderizar a listagem de tipos
+	 */
 	const contentList = () => {
 		return (
 			<ul className="m-0! flex flex-col gap-1 p-0!">
@@ -187,6 +190,9 @@ function ListLanguageRepo() {
 		setLanguageRepo(filter_repo.language || "all")
 	}, [filter_repo.language])
 
+	/**
+	 * Função para renderizar a listagem de linguagens
+	 */
 	const contentList = () => {
 		return (
 			<ul className="m-0! flex flex-col gap-1 p-0!">

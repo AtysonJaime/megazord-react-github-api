@@ -1,4 +1,4 @@
-import { TRepoGithub } from "@/interfaces/user.interface"
+import { TRepoGithub } from "@/interfaces/repository.interface"
 import Link from "next/link"
 import { FaStar } from "react-icons/fa"
 import { PiGitBranch } from "react-icons/pi"
@@ -36,7 +36,7 @@ export default function CardInfoRepo({
 			{description && <p className="text-(--gray-3)!">{description}</p>}
 			{topics.length > 0 && (
 				<div className="flex flex-wrap gap-2">
-					{topics.map((topic) => (
+					{topics.map((topic: string) => (
 						<p
 							key={topic}
 							className="rounded-full border border-(--primary)! px-2 py-1 text-(--primary)!"

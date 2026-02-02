@@ -18,6 +18,9 @@ export default function Home() {
 	const hasFilter = filter_users.user !== "" || filter_users.location !== ""
 	const [currentPage, setCurrentPage] = useState(1)
 
+  /**
+   * Query de busca para listagem dos usuários do github
+   */
 	const { data, status } = useQuery({
 		queryKey: ["users", filter_users, currentPage],
 		queryFn: () => fetchUsers(filter_users, currentPage),
@@ -77,6 +80,7 @@ export default function Home() {
 		)
 	}
 
+  // Realiza validação para pegar o total de páginas de usuários.
 	useEffect(() => {
 		if (total_count === 0) {
 			if (hasFilter) return

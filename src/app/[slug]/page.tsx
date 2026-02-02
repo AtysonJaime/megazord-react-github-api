@@ -78,7 +78,7 @@ export default function Page({
 			lastPage: 0,
 		}
 
-	// Realiza validação para pegar o total de página de repositórios e não perder.
+	// Realiza validação para pegar o total de páginas de repositórios.
 	useEffect(() => {
 		if (totalCountRepo === 0) {
 			setTotalPageRepo(0)
@@ -89,7 +89,7 @@ export default function Page({
 		setTotalPageRepo(newTotalPages)
 	}, [totalCountRepo])
 
-	// Realiza validação para pegar o total de página de repositórios favoritos e não perder.
+	// Realiza validação para pegar o total de páginas de repositórios favoritos.
 	useEffect(() => {
 		if (totalCountStarred === 0) {
 			if (hasFilter) return
@@ -112,6 +112,7 @@ export default function Page({
 			/>
 		)
 
+  // Tag da quantidade total de itens
 	let totalStarredItens =
 		totalCountStarred > 1 ? totalCountStarred * 100 : itensStarred.length
 
