@@ -35,7 +35,9 @@ export default function RootLayout({
 			<body className="h-full w-full">
 				<Header />
 				<QueryClientProvider client={queryClient}>
-					<section className="flex w-full p-6!">{children}</section>
+					<section className="flex h-full! max-h-[calc(100vh-72px)] w-full overflow-auto p-6! sm:max-h-full!">
+						{children}
+					</section>
 					<ReactQueryDevtools initialIsOpen={false} />
 				</QueryClientProvider>
 			</body>

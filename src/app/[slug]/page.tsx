@@ -150,7 +150,7 @@ export default function Page({
 			)
 		}
 		return (
-			<ul className="m-0! flex max-h-[calc(100vh-380px)] flex-col gap-8 overflow-auto p-2!">
+			<ul className="m-0! flex max-h-full! flex-col gap-8 overflow-auto p-2! sm:max-h-[calc(100vh-380px)]!">
 				{filteredStarred.map((repo, index) => (
 					<li key={repo.id} className="flex flex-col gap-8">
 						<CardInfoRepo isStarred={true} repo={repo} username={slug} />
@@ -195,7 +195,7 @@ export default function Page({
 			)
 		}
 		return (
-			<ul className="m-0! flex max-h-[calc(100vh-380px)] flex-col gap-8 overflow-auto p-2!">
+			<ul className="m-0! flex max-h-full! flex-col gap-8 overflow-auto p-2! sm:max-h-[calc(100vh-380px)]!">
 				{itensRepo.map((repo, index) => (
 					<li key={repo.id} className="flex flex-col gap-8">
 						<CardInfoRepo isStarred={false} repo={repo} username={slug} />
