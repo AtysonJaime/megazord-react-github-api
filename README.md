@@ -166,7 +166,7 @@ Para acessar todas as funcionalidades do projeto, é necessário criar um token 
 2. Acesse a página de tokens do GITHUB: [https://github.com/settings/tokens](https://github.com/settings/tokens)
 3. Clique no botão "Generate new token"
 4. Feito isso, siga os passos do formulário que irá surgir.
-5. Após o token ser gerado, copie ele e cole no arquivo .env na variável GITHUB_TOKEN.
+5. Após o token ser gerado, copie ele e cole no arquivo .env na variável NEXT_PUBLIC_GITHUB_TOKEN.
 
 #### 4. Inicie o projeto
 
