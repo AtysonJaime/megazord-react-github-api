@@ -81,12 +81,11 @@ export default function Page({
 	// Realiza validação para pegar o total de página de repositórios e não perder.
 	useEffect(() => {
 		if (totalCountRepo === 0) {
-			if (hasFilter) return
 			setTotalPageRepo(0)
 			return
 		}
 		const newTotalPages = Math.ceil(totalCountRepo / 5)
-		if (newTotalPages <= totalPageRepo) return
+		if (newTotalPages === totalPageRepo) return
 		setTotalPageRepo(newTotalPages)
 	}, [totalCountRepo])
 
