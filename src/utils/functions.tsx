@@ -22,16 +22,16 @@ export const filterListStarred = (
 			(repo) => repo.language?.toLowerCase() === language.toLowerCase(),
 		)
 	switch (type) {
-		case "Source":
+		case "source":
 			newList = newList.filter((repo) => !repo.fork)
 			break
-		case "Forks":
+		case "forks":
 			newList = newList.filter((repo) => repo.fork)
 			break
-		case "Archived":
+		case "archived":
 			newList = newList.filter((repo) => repo.archived)
 			break
-		case "Mirrors":
+		case "mirrors":
 			newList = newList.filter((repo) => repo.mirror_url !== null)
 			break
 		default:
@@ -68,20 +68,20 @@ export const addQueryFilterRepo = (
 ): string => {
 	const { language, type, repo } = filter_repo
 	let query = q
-	if (repo) query += ` ${repo} in:name`
-	if (language !== "all") query += ` language:${language}`
+	if (repo) query += `+${repo}+in:name`
+	if (language !== "all") query += `+language:${language}`
 	switch (type) {
-		case "Source":
-			query += " fork:false"
+		case "source":
+			query += "+fork:false"
 			break
-		case "Forks":
-			query += " fork:true"
+		case "forks":
+			query += "+fork:true"
 			break
-		case "Archived":
-			query += " archived:true"
+		case "archived":
+			query += "+archived:true"
 			break
-		case "Mirrors":
-			query += " mirror:true"
+		case "mirrors":
+			query += "+mirror:true"
 			break
 		default:
 			break
