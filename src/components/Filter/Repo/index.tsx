@@ -55,7 +55,7 @@ export default function FilterRepo() {
 					<Button
 						type="button"
 						variant="outline-secondary"
-						title="Buscar usuário"
+						title="Buscar repositório"
 						onClick={handleSearch}
 						className="sm:flex!rounded-none! hidden! border-t-0! border-r-0! border-l-0! border-(--gray-border)! hover:bg-(--gray-5)! focus:bg-(--gray-5)! active:bg-(--gray-5)!"
 					>
@@ -66,14 +66,14 @@ export default function FilterRepo() {
 						value={searchRepo}
 						onKeyDown={handlePressEnter}
 						onChange={(e) => setSearchRepo(e.target.value)}
-						placeholder="Search by user. Ex: pedro"
+						placeholder="Search by repository. Ex: react"
 						className=""
 					/>
 					{filter_repo.repo !== "" && (
 						<Button
 							variant="outline-secondary"
 							className="rounded-none! border-t-0! border-r-0! border-l-0! border-(--gray-border)! hover:bg-(--gray-5)! focus:bg-(--gray-5)! active:bg-(--gray-5)!"
-							title="Limpar filtro de usuário"
+							title="Limpar filtro de repositório"
 							onClick={handleClearFilterRepo}
 						>
 							<X size={24} className="text-(--gray-3)!" />
